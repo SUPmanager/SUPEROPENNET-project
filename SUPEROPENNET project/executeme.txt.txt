@@ -1,0 +1,54 @@
+create table member (
+memId int(15) unsigned not null auto_increment primary key,
+memNick char(40) not null,
+memStat tinyint not null,
+memRank tinyint not null,
+trimNick char(40) not null,
+memQuiz smallint unsigned not null
+);
+
+create unique index memIndex
+on member ( memId );
+
+
+
+create table secret(
+memid int(15) unsigned not null auto_increment primary key,
+id char(30) not null,
+pwd char(41) not null
+);
+
+create unique index memIndex
+on secret ( memId );
+
+create table msg(
+msgId int unsigned not null auto_increment primary key,
+msgBy int(15) unsigned not null,
+msgTo int(15) unsigned not null,
+msgText text not null,
+msgTime timestamp not null,
+msgTitle tinytext not null,
+msgRead ENUM('read','unread','removed'),
+msgReport ENUM('reported','not')
+);
+
+create unique index memIndex
+on msg ( msgId );
+create unique index memIndex
+on msg ( msgBy );
+create unique index memIndex
+on msg ( msgTo );
+
+
+
+
+mysql_query("set session character_set_connection=utf8;");
+
+mysql_query("set session character_set_results=utf8;");
+
+mysql_query("set session character_set_client=utf8;");
+
+
+$DB = mysql_select_db($superopennt, $connect); 
+
+mysql_query('set names utf8',$connect);
